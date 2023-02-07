@@ -11,11 +11,13 @@ manager_detection(){
                 apt update
                 for i in docker.io docker-compose-plugin containerd.io; do apt install -y $i; done
                 systemctl start docker
-        elif [ $(command -v dnf) ]; then
-                dnf install dnf-plugins-core -y
-		dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-		sudo dnf install docker-ce docker-ce-cli containerd.io
-		systemctl start docker
+        elif [ $(command -v yum) ]; then
+                yum-config-manager --enable repository extras
+                yum update
+                yum upgrade
+                yum install docker-ce -y
+                systemctl enable docker
+                systemctl start docker
         elif [ $(command -v pacman) ]; then
                 pacman -Sy
 		pacman -S docker -y
