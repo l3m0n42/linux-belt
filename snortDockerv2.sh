@@ -36,7 +36,7 @@ manager_detection(){
 container_install(){
 	echo 'Installing Snort container for you, pumpkin <3'
 	docker pull l3m0n42/snockerv3
-	docker run -it --rm --net=host -d l3m0n42/snockerv3 /bin/bash -c "snort -Q -i $interface -R /usr/local/snort3.rules -c /etc/snort/etc/snort.conf --daq afpacket --daq_mode=inline"
+	docker run -it --rm --net=host -d l3m0n42/snockerv3 /bin/bash -c "snort -Q -i $interface -R /usr/local/snort3.rules -c /etc/snort/etc/snort.conf --daq afpacket"
 }
 manager_detection
 container_install
